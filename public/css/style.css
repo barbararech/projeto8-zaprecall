@@ -1,0 +1,59 @@
+*{
+    box-sizing: border-box;
+}
+
+/* font-family: 'Recursive', sans-serif;
+font-family: 'Righteous', cursive; */
+
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: visible;
+}
+
+/* Start Screen */
+.containerStart{
+    background-color:#FB6B6B;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index:1;
+    position: absolute;
+}
+
+img .logoStart{
+    width: 136px;
+    height: 161px;
+}
+
+h1{
+    font-family: 'Righteous', cursive;
+    font-size: 36px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-top: 13px;
+}
+
+.buttonStart{
+    width: 246px;
+    height: 54px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Recursive', sans-serif;
+    color:#D70900;
+    background-color: #FFFFFF;
+    border:1px solid #D70900;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    cursor:pointer;
+    margin-top: 30px;
+}
+
