@@ -2,24 +2,44 @@ import React from "react";
 
 function Question(props){
 
-    const [visible,setVisible] = React.useState(false);
+    const [stage,setStage] = React.useState("1");
 
-    return (
-        visible ? 
-        <>
-            <div className="question" onClick={()=>setVisible(true)}>
-                <p> {props.question}</p>
-                <ion-icon name="refresh-outline"></ion-icon>
-            </div>
-        </> 
-        :
-         <>
-         <div className="flashcard" onClick={()=>setVisible(true)}>
-             <h4> Pergunta {props.id+1}</h4>
-             <ion-icon name="play-outline"></ion-icon>
-         </div>
-     </> 
-    );
+   
+       if(stage === "1"){
+        return (
+            <>
+                <div className="flashcard" onClick={()=>setStage("2")}>
+                    <h4> Pergunta {props.id+1}</h4>
+                    <ion-icon name="play-outline"></ion-icon>
+                </div>
+            </> 
+        )
+       }
+       if(stage === "2"){
+        return (
+            <>
+                <div className="question">
+                    <p> {props.question}</p>
+                    <ion-icon  onClick={()=>setStage("3")} name="refresh-outline"></ion-icon>
+                </div>
+            </> 
+        )
+       }
+       if(stage === "3"){
+        return (
+            <>
+                <div className="answers" onClick={()=>setStage("4")}>
+                    <p> {props.answer}</p>
+                    <div className="buttonsAnswer">
+                        <button className="wrong">Não lembrei</button>
+                        <button className="almost">Quase não lembrei</button>
+                        <button className="right">Zap!</button>
+                    </div>
+                </div>
+            </> 
+        )
+       }
+
 }
 
 function RandomQuestions(){

@@ -96,8 +96,7 @@ img .logoStart{
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Questions */
-
+/* Flashcard */
 .flashcard{
     width: 300px;
     background-color: #FFFFFF;
@@ -120,8 +119,8 @@ img .logoStart{
     font-size: 20px;
     color:#333333
 }
-
-.question{
+/* Questions */
+.question, .answers{
     width: 300px;
     /* height: 131px; */
     background-color: #FFFFD4;
@@ -142,4 +141,41 @@ img .logoStart{
     right:8px;
     font-size: 20px;
     color:#333333;
+    cursor: pointer;
+}
+
+/* Answers */
+
+.buttonsAnswer{
+   width: 270px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   position: absolute;
+   bottom:8px;
+}
+
+.buttonsAnswer button{
+    width: 85px;
+    height: 37px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Recursive', sans-serif;
+    color:#ffffff;
+    border:none;
+    border-radius: 5px;
+    cursor:pointer;
+} 
+
+.wrong{
+    background-color: #ff3030;
+}
+
+.almost{
+    background-color: #ff922e;
+}
+
+.right{
+    background-color: #2fbe34;
 }
