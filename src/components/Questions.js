@@ -1,14 +1,29 @@
 import React from "react";
 
 function Question(props){
+
+    const [visible,setVisible] = React.useState(false);
+
     return (
+        visible ? 
         <>
-            <div className="question">
-                <h4> Pergunta {props.id+1}</h4>
-                <ion-icon name="play-outline"></ion-icon>
+            <div className="question" onClick={()=>setVisible(true)}>
+                <p> {props.question}</p>
+                <ion-icon name="refresh-outline"></ion-icon>
             </div>
         </> 
+        :
+         <>
+         <div className="flashcard" onClick={()=>setVisible(true)}>
+             <h4> Pergunta {props.id+1}</h4>
+             <ion-icon name="play-outline"></ion-icon>
+         </div>
+     </> 
     );
+}
+
+function RandomQuestions(){
+    return Math.random() -0.5;
 }
 
 export default function Questions(){
@@ -40,9 +55,11 @@ export default function Questions(){
         }
     ]
 
-    const questions = items.map((item,index)=>(
-        <Question key={index} id={index} question={item.question} answer={item.answer}  />
-    ))
+    const questions = items
+        .sort(RandomQuestions)
+        .map((item,index)=>(
+            <Question key={index} id={index} question={item.question} answer={item.answer}  />
+            ))
     return (
         <>
             {questions}

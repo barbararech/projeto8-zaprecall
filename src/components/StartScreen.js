@@ -5,7 +5,8 @@ export default function StartScreen(){
     const [visible,setVisible] = React.useState(true);
 
     return (
-     visible ?   <>
+     visible ?  
+        <>
             <div className="containerStart">
                 <img className="logoStart" src="/images/logo.png" alt="logo"></img>
                 <h1> Zap Recall</h1>
