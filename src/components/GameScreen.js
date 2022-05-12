@@ -3,6 +3,7 @@ import Bottom from "./Bottom";
 import Questions from "./Questions";
 
 export default function GameScreen(){
+    const [arrayResults, setArrayResults] = React.useState([]);
 
     return (
         <>
@@ -11,8 +12,8 @@ export default function GameScreen(){
                     <img className="logoGame" src="/images/logo.png" alt="logo"></img>
                     <h1> Zap Recall</h1>
                 </div>
-                <Questions />
-                <Bottom />
+                <Questions arrayResults={arrayResults} setArrayResults={setArrayResults}/>
+                <Bottom  />
             </div>
         </> 
     );

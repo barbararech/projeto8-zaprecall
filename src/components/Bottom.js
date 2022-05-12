@@ -5,7 +5,7 @@ export default function Bottom(){
     return (
         <>
             <div className="bottom">
-                {/* funcao aqui */}
+                <p> </p>
             </div>
         </> 
     );

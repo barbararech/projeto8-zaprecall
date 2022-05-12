@@ -5,55 +5,81 @@ function Question(props){
     const [stage,setStage] = React.useState("1");
     const [classResult, setClassResult] = React.useState("flashcard");
     const [iconResult, seticonResult] = React.useState("play-outline");
-
-    function wrongAnswer(){
-        setClassResult("flashcard wrong");
-        seticonResult("close-circle");
+    
+    function ChangeStage1(className){
+        if(className === "wrong"){
+            setClassResult("flashcard wrong");
+            seticonResult("close-circle");
+        }
+        if(className === "almost"){
+            setClassResult("flashcard almost");
+            seticonResult("help-circle");
+        }
+        if(className === "right"){
+            setClassResult("flashcard right");
+            seticonResult("checkmark-circle");
+        }
+        console.log(props.arrayStats);
+        props.setArrayStats([...props.arrayStats, className]);
     }
 
-    function almostAnswer(){
-        setClassResult("flashcard almost");
-        seticonResult("help-circle");
+    if(stage === "1"){
+        return (
+            <>
+                <div className={classResult} onClick={()=>setStage("2")}>
+                    <h4> Pergunta {props.id+1}</h4>
+                    <ion-icon name={iconResult}></ion-icon>
+                </div>
+            </> 
+        )
     }
-    function rightAnswer(){
-        setClassResult("flashcard right");
-        seticonResult("checkmark-circle");
+    if(stage === "2"){
+        return (
+            <>
+                <div className="question">
+                    <p> {props.question}</p>
+                    <ion-icon  onClick={()=>setStage("3")} name="refresh-outline"></ion-icon>
+                </div>
+            </> 
+        )
     }
+    if(stage === "3"){
+        const button = [
+            {
+                className: "wrong",
+                text: "Não lembrei"
+            },
+            {
+                className: "almost",
+                text: "Quase não lembrei"
+            },
+            {
+                className: "right",
+                text: "Zap!"
+            },
 
-        if(stage === "1"){
-            return (
-                <>
-                    <div className={classResult} onClick={()=>setStage("2")}>
-                        <h4> Pergunta {props.id+1}</h4>
-                        <ion-icon name={iconResult}></ion-icon>
-                    </div>
-                </> 
-            )
-        }
-        if(stage === "2"){
-            return (
-                <>
-                    <div className="question">
-                        <p> {props.question}</p>
-                        <ion-icon  onClick={()=>setStage("3")} name="refresh-outline"></ion-icon>
-                    </div>
-                </> 
-            )
-        }
-        if(stage === "3"){
-            return (
-                <>
-                    <div className="answers" onClick={()=>setStage("1")}>
-                        <p> {props.answer}</p>
-                        <div className="buttonsAnswer">
-                            <button className="wrong" onClick={wrongAnswer}>Não lembrei</button>
-                            <button className="almost" onClick={almostAnswer}>Quase não lembrei</button>
-                            <button className="right" onClick={rightAnswer}>Zap!</button>
-                        </div>
-                    </div>
-                </> 
-            )
-        }
+        ]
+        return (
+        <>
+            <div className="answers" onClick={()=>setStage("1")}>
+                <p> {props.answer}</p>
+                <div className="buttonsAnswer">
+                    {
+                        button.map(({className, text, index})=>{
+                            return(
+                            <button className={className} key={index} onClick={()=> {
+                                ChangeStage1(className);
+                                }} >
+                                {text}
+                            </button>)
+                        })
+                    }
+                </div>
+            </div>
+            
+        </> 
+        )
+    }
 }
 
 function RandomQuestions(){
@@ -61,6 +87,9 @@ function RandomQuestions(){
 }
 
 export default function Questions(){
+
+    const [arrayStats, setArrayStats] = React.useState([]);
+
     // Logic
     const items =[
         { question: "O que é JSX?",
@@ -92,8 +121,9 @@ export default function Questions(){
     const questions = items
         .sort(RandomQuestions)
         .map((item,index)=>(
-            <Question key={index} id={index} question={item.question} answer={item.answer}  />
+            <Question key={index} id={index} question={item.question} answer={item.answer} arrayStats={arrayStats} setArrayStats={setArrayStats} />
             ))
+        console.log(arrayStats)
     return (
         <>
             {questions}
