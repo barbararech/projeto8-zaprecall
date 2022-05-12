@@ -116,9 +116,10 @@ img .logoStart{
 }
 
 .flashcard ion-icon{
-    font-size: 20px;
-    color:#333333
+    font-size: 25px;
+    color:#333333;
 }
+
 /* Questions */
 .question, .answers{
     width: 300px;
@@ -139,13 +140,12 @@ img .logoStart{
     position: absolute;
     bottom: 8px;
     right:8px;
-    font-size: 20px;
+    font-size: 25px;
     color:#333333;
     cursor: pointer;
 }
 
 /* Answers */
-
 .buttonsAnswer{
    width: 270px;
    display: flex;
@@ -168,14 +168,44 @@ img .logoStart{
     cursor:pointer;
 } 
 
-.wrong{
+button.wrong {
     background-color: #ff3030;
 }
 
-.almost{
+button.almost {
     background-color: #ff922e;
 }
 
-.right{
+button.right {
     background-color: #2fbe34;
+}
+
+.flashcard.wrong{
+    text-decoration: line-through;
+    color:#ff3030;
+}
+
+.almost{
+    text-decoration: line-through;
+    color: #ff922e;
+}
+
+.right{
+    text-decoration: line-through;
+    color:#2fbe34;
+}
+
+.flashcard.wrong ion-icon{
+    font-size: 25px;
+    color:#ff3030;
+}
+
+.flashcard.almost ion-icon{
+    font-size: 25px;
+    color:#ff922e;
+}
+
+.flashcard.right ion-icon{
+    font-size: 25px;
+    color:#2fbe34;
 }

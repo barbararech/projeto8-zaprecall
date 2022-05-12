@@ -3,43 +3,57 @@ import React from "react";
 function Question(props){
 
     const [stage,setStage] = React.useState("1");
+    const [classResult, setClassResult] = React.useState("flashcard");
+    const [iconResult, seticonResult] = React.useState("play-outline");
 
-   
-       if(stage === "1"){
-        return (
-            <>
-                <div className="flashcard" onClick={()=>setStage("2")}>
-                    <h4> Pergunta {props.id+1}</h4>
-                    <ion-icon name="play-outline"></ion-icon>
-                </div>
-            </> 
-        )
-       }
-       if(stage === "2"){
-        return (
-            <>
-                <div className="question">
-                    <p> {props.question}</p>
-                    <ion-icon  onClick={()=>setStage("3")} name="refresh-outline"></ion-icon>
-                </div>
-            </> 
-        )
-       }
-       if(stage === "3"){
-        return (
-            <>
-                <div className="answers" onClick={()=>setStage("4")}>
-                    <p> {props.answer}</p>
-                    <div className="buttonsAnswer">
-                        <button className="wrong">Não lembrei</button>
-                        <button className="almost">Quase não lembrei</button>
-                        <button className="right">Zap!</button>
+    function wrongAnswer(){
+        setClassResult("flashcard wrong");
+        seticonResult("close-circle");
+    }
+
+    function almostAnswer(){
+        setClassResult("flashcard almost");
+        seticonResult("help-circle");
+    }
+    function rightAnswer(){
+        setClassResult("flashcard right");
+        seticonResult("checkmark-circle");
+    }
+
+        if(stage === "1"){
+            return (
+                <>
+                    <div className={classResult} onClick={()=>setStage("2")}>
+                        <h4> Pergunta {props.id+1}</h4>
+                        <ion-icon name={iconResult}></ion-icon>
                     </div>
-                </div>
-            </> 
-        )
-       }
-
+                </> 
+            )
+        }
+        if(stage === "2"){
+            return (
+                <>
+                    <div className="question">
+                        <p> {props.question}</p>
+                        <ion-icon  onClick={()=>setStage("3")} name="refresh-outline"></ion-icon>
+                    </div>
+                </> 
+            )
+        }
+        if(stage === "3"){
+            return (
+                <>
+                    <div className="answers" onClick={()=>setStage("1")}>
+                        <p> {props.answer}</p>
+                        <div className="buttonsAnswer">
+                            <button className="wrong" onClick={wrongAnswer}>Não lembrei</button>
+                            <button className="almost" onClick={almostAnswer}>Quase não lembrei</button>
+                            <button className="right" onClick={rightAnswer}>Zap!</button>
+                        </div>
+                    </div>
+                </> 
+            )
+        }
 }
 
 function RandomQuestions(){
