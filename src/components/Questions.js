@@ -5,8 +5,9 @@ function Question(props){
     const [stage,setStage] = React.useState("1");
     const [classResult, setClassResult] = React.useState("flashcard");
     const [iconResult, seticonResult] = React.useState("");
+    
 
-    function ChangeStage1(className){
+    function ChangeStage1(className,iconname){
         if(className === "wrong"){
             setClassResult("flashcard wrong");
             seticonResult("close-circle");
@@ -20,6 +21,7 @@ function Question(props){
             seticonResult("checkmark-circle");
         }
 
+        props.setArrayResult([...props.arrayResult, iconname]);
         props.setArrayStats([...props.arrayStats, className]);
     }
 
@@ -47,15 +49,18 @@ function Question(props){
         const button = [
             {
                 className: "wrong",
-                text: "Não lembrei"
+                text: "Não lembrei",
+                iconname:"close-circle"
             },
             {
                 className: "almost",
-                text: "Quase não lembrei"
+                text: "Quase não lembrei",
+                iconname:"help-circle"
             },
             {
                 className: "right",
-                text: "Zap!"
+                text: "Zap!",
+                iconname:"checkmark-circle"
             },
 
         ]
@@ -66,10 +71,10 @@ function Question(props){
                 <p> {props.answer}</p>
                 <div className="buttonsAnswer">
                     {
-                        button.map(({text, index, className})=>{
+                        button.map(({text, index, className, iconname})=>{
                             return(
-                            <button className={className} key={index} onClick={()=> {
-                                ChangeStage1(className);
+                            <button className={className} key={index} iconname={iconname} onClick={()=> {
+                                ChangeStage1(className,iconname);
                                 }} >
                                 {text}
                             </button>)
@@ -81,7 +86,6 @@ function Question(props){
         )
     }
     if(stage === "4"){
-        console.log(iconResult)
         return (
             <>
                 <div className={classResult} onClick={()=>setStage("2")}>
@@ -91,7 +95,6 @@ function Question(props){
             </> 
         )
     }
-
 }
 
 function RandomQuestions(){
