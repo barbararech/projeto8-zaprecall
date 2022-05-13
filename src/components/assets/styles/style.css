@@ -63,7 +63,7 @@ img .logoStart{
     position: absolute;
     overflow-y: scroll;
     padding-top: 50px;
-    padding-bottom: 70px;
+    padding-bottom: 130px;
 }
 
 .top{
@@ -217,10 +217,22 @@ button.right {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 16px;
+    padding-bottom: 10px;
 }
+
 .bottom p{
+    max-width: 222px;
+    text-align: center;
     font-family: 'Recursive', sans-serif;
     font-size: 18px;
     font-weight: 400;
     color: #333333;
+}
+
+.bottom p:first-child{
+    font-weight: 700;
+}
+.bottom p:nth-child(2){
+    margin: 14px auto;
 }

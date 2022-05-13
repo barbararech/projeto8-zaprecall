@@ -4,8 +4,8 @@ function Question(props){
 
     const [stage,setStage] = React.useState("1");
     const [classResult, setClassResult] = React.useState("flashcard");
-    const [iconResult, seticonResult] = React.useState("play-outline");
-    
+    const [iconResult, seticonResult] = React.useState("");
+
     function ChangeStage1(className){
         if(className === "wrong"){
             setClassResult("flashcard wrong");
@@ -19,10 +19,7 @@ function Question(props){
             setClassResult("flashcard right");
             seticonResult("checkmark-circle");
         }
-        console.log(props.arrayStats)
-        // console.log(arrayStats)
-        // console.log(setArrayStats)
-        console.log(props.setArrayStats)
+
         props.setArrayStats([...props.arrayStats, className]);
     }
 
@@ -31,7 +28,7 @@ function Question(props){
             <>
                 <div className={classResult} onClick={()=>setStage("2")}>
                     <h4> Pergunta {props.id+1}</h4>
-                    <ion-icon name={iconResult}></ion-icon>
+                    <ion-icon name="play-outline"></ion-icon>
                 </div>
             </> 
         )
@@ -62,9 +59,10 @@ function Question(props){
             },
 
         ]
+
         return (
         <>
-            <div className="answers" onClick={()=>setStage("1")}>
+            <div className="answers" onClick={()=>setStage("4")}>
                 <p> {props.answer}</p>
                 <div className="buttonsAnswer">
                     {
@@ -79,10 +77,21 @@ function Question(props){
                     }
                 </div>
             </div>
-            
         </> 
         )
     }
+    if(stage === "4"){
+        console.log(iconResult)
+        return (
+            <>
+                <div className={classResult} onClick={()=>setStage("2")}>
+                    <h4> Pergunta {props.id+1}</h4>
+                    <ion-icon name={iconResult}></ion-icon>
+                </div>
+            </> 
+        )
+    }
+
 }
 
 function RandomQuestions(){
@@ -90,8 +99,6 @@ function RandomQuestions(){
 }
 
 export default function Questions(props){
-
-    // const [arrayStats, setArrayStats] = React.useState([]);
 
     // Logic
     const items =[
@@ -124,12 +131,9 @@ export default function Questions(props){
     const questions = items
         .sort(RandomQuestions)
         .map((item,index)=>(
-            <Question key={index} id={index} question={item.question} answer={item.answer} arrayStats={props.arrayStats} setArrayStats={props.setArrayStats} />
+            <Question key={index} id={index} question={item.question} answer={item.answer} arrayStats={props.arrayStats} setArrayStats={props.setArrayStats} arrayResult={props.arrayResult} setArrayResult={props.setArrayResult} />
             ))
-            console.log(props.arrayStats)
-            // console.log(arrayStats)
-            // console.log(setArrayStats)
-            console.log(props.setArrayStats)
+
     return (
         <>
             {questions}
