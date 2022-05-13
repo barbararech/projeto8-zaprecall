@@ -19,7 +19,10 @@ function Question(props){
             setClassResult("flashcard right");
             seticonResult("checkmark-circle");
         }
-        console.log(props.arrayStats);
+        console.log(props.arrayStats)
+        // console.log(arrayStats)
+        // console.log(setArrayStats)
+        console.log(props.setArrayStats)
         props.setArrayStats([...props.arrayStats, className]);
     }
 
@@ -65,7 +68,7 @@ function Question(props){
                 <p> {props.answer}</p>
                 <div className="buttonsAnswer">
                     {
-                        button.map(({className, text, index})=>{
+                        button.map(({text, index, className})=>{
                             return(
                             <button className={className} key={index} onClick={()=> {
                                 ChangeStage1(className);
@@ -86,9 +89,9 @@ function RandomQuestions(){
     return Math.random() -0.5;
 }
 
-export default function Questions(){
+export default function Questions(props){
 
-    const [arrayStats, setArrayStats] = React.useState([]);
+    // const [arrayStats, setArrayStats] = React.useState([]);
 
     // Logic
     const items =[
@@ -121,9 +124,12 @@ export default function Questions(){
     const questions = items
         .sort(RandomQuestions)
         .map((item,index)=>(
-            <Question key={index} id={index} question={item.question} answer={item.answer} arrayStats={arrayStats} setArrayStats={setArrayStats} />
+            <Question key={index} id={index} question={item.question} answer={item.answer} arrayStats={props.arrayStats} setArrayStats={props.setArrayStats} />
             ))
-        console.log(arrayStats)
+            console.log(props.arrayStats)
+            // console.log(arrayStats)
+            // console.log(setArrayStats)
+            console.log(props.setArrayStats)
     return (
         <>
             {questions}

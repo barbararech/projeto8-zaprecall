@@ -209,3 +209,18 @@ button.right {
     font-size: 25px;
     color:#2fbe34;
 }
+
+/* Bottom */
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.bottom p{
+    font-family: 'Recursive', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+}
