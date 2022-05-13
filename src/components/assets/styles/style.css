@@ -180,7 +180,7 @@ button.right {
     background-color: #2fbe34;
 }
 
-.flashcard.wrong{
+.wrong{
     text-decoration: line-through;
     color:#ff3030;
 }
@@ -195,17 +195,17 @@ button.right {
     color:#2fbe34;
 }
 
-.flashcard.wrong ion-icon, .iconResults.wrong ion-icon{
+.flashcard.wrong ion-icon{
     font-size: 25px;
     color:#ff3030;
 }
 
-.flashcard.almost ion-icon, .iconResults.almost ion-icon{
+.flashcard.almost ion-icon{
     font-size: 25px;
     color:#ff922e;
 }
 
-.flashcard.right ion-icon, .iconResults.right ion-icon{
+.flashcard.right ion-icon{
     font-size: 25px;
     color:#2fbe34;
 }
